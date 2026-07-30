@@ -1,70 +1,79 @@
 <div align="center">
 
-# 🚗 Car Maintenance System
+  <!-- Banner / Logo -->
+  <img src="https://raw.githubusercontent.com/andreasbm/readme-template/master/assets/banner.png" alt="Car Maintenance Banner" width="100%" style="border-radius: 10px;"/>
 
-<img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge&logo=none" alt="Status">
-<img src="https://img.shields.io/badge/Contributions-Welcome-orange?style=for-the-badge&logo=github" alt="Contributions Welcome">
-<img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge&logo=open-source-initiative" alt="License">
+  <br />
+  <br />
 
-*A smart and efficient way to track, manage, and optimize your vehicle's maintenance schedule.*
+  <h1>🚗 Car Maintenance Dashboard</h1>
+
+  <p align="center">
+    <b>An end-to-end management system to track vehicle servicing, fuel efficiency, and upkeep costs.</b>
+    <br />
+    <a href="https://github.com/SuryaO6/Car-Maintenance/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/SuryaO6/Car-Maintenance/issues">Request Feature</a>
+  </p>
+
+  <!-- Badges -->
+  <p align="center">
+    <a href="https://github.com/SuryaO6/Car-Maintenance/stargazers"><img src="https://img.shields.io/github/stars/SuryaO6/Car-Maintenance?style=for-the-badge&color=gold" alt="Stars"></a>
+    <a href="https://github.com/SuryaO6/Car-Maintenance/network/members"><img src="https://img.shields.io/github/forks/SuryaO6/Car-Maintenance?style=for-the-badge&color=blue" alt="Forks"></a>
+    <a href="https://github.com/SuryaO6/Car-Maintenance/issues"><img src="https://img.shields.io/github/issues/SuryaO6/Car-Maintenance?style=for-the-badge&color=red" alt="Issues"></a>
+    <a href="https://github.com/SuryaO6/Car-Maintenance/blob/main/LICENSE"><img src="https://img.shields.io/github/license/SuryaO6/Car-Maintenance?style=for-the-badge&color=success" alt="License"></a>
+  </p>
+
+</div>
+
+<br />
+
+---
+
+## ⚡ Tech Stack Icons
+
+<div align="center">
+
+| Frontend | Backend & Database | Tools & Environment |
+| :---: | :---: | :---: |
+| <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> | <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" /> <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" /> | <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" /> <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" /> |
 
 </div>
 
 ---
 
-## 📋 Table of Contents
-- [About The Project](#-about-the-project)
-- [Key Features](#-key-features)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#-usage)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License](#-license)
+## 🔥 Key Highlights
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🛠️ Service Logs & History</h3>
+      <ul>
+        <li>Log oil changes, filter replacements, and brake checks.</li>
+        <li>Track mileage milestones dynamically.</li>
+        <li>Store digital receipts and service records.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>⛽ Mileage & Fuel Tracker</h3>
+      <ul>
+        <li>Calculate real-time fuel efficiency (KM/L or MPG).</li>
+        <li>Monitor refueling expenses over weekly/monthly periods.</li>
+        <li>Export cost logs for personal finance tracking.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🎯 About The Project
+## 🛠️ Quick Installation Setup
 
-Keeping track of oil changes, tire rotations, insurance renewals, and general vehicle health can be overwhelming. **Car-Maintenance** is designed to simplify vehicle management, helping car owners keep their vehicles in top-notch condition, avoid unexpected breakdowns, and save money on costly repairs.
+<details>
+<summary><b>Click to expand step-by-step terminal instructions</b></summary>
 
----
-
-## ✨ Key Features
-
-- **📊 Service Tracking:** Log and monitor all past and upcoming maintenance tasks.
-- **⏰ Reminders:** Get timely alerts for routine check-ups, insurance renewals, and PUC tests.
-- **⛽ Fuel Log:** Track your fuel economy, mileage, and refuelling expenses over time.
-- **💰 Expense Manager:** Keep an all-in-one ledger of repair costs, upgrades, and maintenance spending.
-- **📱 Responsive UI:** Clean, modern, and mobile-friendly interface for easy on-the-go access.
-
----
-
-## 🛠️ Tech Stack
-
-*(Update this section based on the actual technologies used in your repository)*
-
-* **Frontend:** HTML5, CSS3, JavaScript / React
-* **Backend:** Node.js / Express / Python
-* **Database:** MongoDB / PostgreSQL / SQLite
-* **Styling:** Tailwind CSS / Bootstrap
-
----
-
-## 🚀 Getting Started
-
-Follow these steps to set up the project locally on your machine.
-
-### Prerequisites
-
-Make sure you have the following installed:
-* Git
-* Node.js (or your respective backend environment)
-
-### Installation
+<br />
 
 1. **Clone the repository**
-   ```bash
+```bash
    git clone [https://github.com/SuryaO6/Car-Maintenance.git](https://github.com/SuryaO6/Car-Maintenance.git)
