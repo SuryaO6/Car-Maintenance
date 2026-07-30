@@ -12,14 +12,6 @@ A simple and lightweight application to track vehicle maintenance, fuel logs, an
 
 ---
 
-## 🛠️ Tech Stack
-
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js / Express
-- **Database:** MongoDB
-
----
-
 ## 🚀 Quick Start
 
 1. **Clone the repo**
