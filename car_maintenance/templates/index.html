@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+{% if not vehicle %}
+  <section class="panel panel--onboard">
+    <h1 class="panel__title">Add your first vehicle</h1>
+    <p class="panel__hint">One entry gets you a full maintenance board: odometer, service tags, and history.</p>
+    <form method="post" action="{{ url_for('setup') }}" class="form form--grid">
+      <label class="field">
+        <span>Name / model</span>
+        <input type="text" name="name" placeholder="e.g. BMW 320d" required>
+      </label>
+      <label class="field">
+        <span>Current odometer (km)</span>
+        <input type="number" step="0.1" name="mileage" required>
+      </label>
+      <label class="field">
+        <span>Driving condition</span>
+        <select name="condition">
+          {% for c in conditions %}
+          <option value="{{ c }}">{{ c }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button type="submit" class="btn btn--primary">Add to garage</button>
+    </form>
+  </section>
+
+{% else %}
+
+  <section class="dash-top">
+    <div class="odometer-card">
+      <div class="odometer-card__top">
+        <span class="odometer-card__name">{{ vehicle.name }}</span>
+        <span class="chip chip--{{ vehicle.driving_condition|lower }}">{{ vehicle.driving_condition }}</span>
+      </div>
+      <div class="odometer-readout">{{ "%.0f"|format(vehicle.current_mileage) }}<span class="odometer-readout__unit">km</span></div>
+
+      {% if garage.vehicles|length > 1 %}
+      <form method="post" action="{{ url_for('switch') }}" class="switcher">
+        <select name="name" onchange="this.form.submit()">
+          {% for name in garage.vehicles %}
+          <option value="{{ name }}" {{ 'selected' if name == garage.active }}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </form>
+      {% endif %}
+    </div>
+
+    {% if stats %}
+    <div class="stat-strip">
+      <div class="stat-strip__item">
+        <span class="stat-strip__value">{{ stats.total_services }}</span>
+        <span class="stat-strip__label">services logged</span>
+      </div>
+      <div class="stat-strip__item">
+        <span class="stat-strip__value">₹{{ "%.0f"|format(stats.total_spent) }}</span>
+        <span class="stat-strip__label">total spend</span>
+      </div>
+      <div class="stat-strip__item">
+        <span class="stat-strip__value">{{ stats.most_common_service or "—" }}</span>
+        <span class="stat-strip__label">most frequent</span>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="tag-rail">
+    <h2 class="section-label">01 — Upcoming service</h2>
+    <div class="tag-grid">
+      {% for p in predictions %}
+      <div class="tag tag--{{ p.status }}">
+        <div class="tag__hole"></div>
+        <div class="tag__service">{{ p.service }}</div>
+        <div class="tag__status">
+          {% if p.status == "overdue" %}Overdue
+          {% elif p.status == "due_soon" %}Due soon
+          {% elif p.status == "no_record" %}No record
+          {% else %}On track{% endif %}
+        </div>
+        <div class="tag__message">{{ p.message }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="action-deck">
+    <div class="panel">
+      <h2 class="section-label">02 — Update odometer</h2>
+      <form method="post" action="{{ url_for('mileage') }}" class="form">
+        <label class="field">
+          <span>New reading (km)</span>
+          <input type="number" step="0.1" name="value" min="{{ vehicle.current_mileage }}" required>
+        </label>
+        <button type="submit" class="btn">Update mileage</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2 class="section-label">03 — Log a completed service</h2>
+      <form method="post" action="{{ url_for('log_service') }}" class="form" id="service-form">
+        <label class="field">
+          <span>Service</span>
+          <select name="service_select" id="service_select" onchange="toggleCustom()">
+            {% for s in service_types %}
+            <option value="{{ s }}">{{ s }}</option>
+            {% endfor %}
+            <option value="__custom__">+ Add custom service…</option>
+          </select>
+        </label>
+
+        <div id="custom-fields" class="custom-fields" hidden>
+          <label class="field">
+            <span>Custom service name</span>
+            <input type="text" name="custom_name" placeholder="e.g. Wheel Alignment">
+          </label>
+          <label class="field field--half">
+            <span>Interval (km)</span>
+            <input type="number" name="custom_km" placeholder="10000">
+          </label>
+          <label class="field field--half">
+            <span>Interval (months)</span>
+            <input type="number" name="custom_months" placeholder="12">
+          </label>
+        </div>
+
+        <label class="field field--half">
+          <span>Cost (optional)</span>
+          <input type="number" step="0.01" name="cost" placeholder="45.50">
+        </label>
+        <label class="field field--half">
+          <span>Notes (optional)</span>
+          <input type="text" name="notes" placeholder="synthetic oil">
+        </label>
+
+        <button type="submit" class="btn btn--primary">Log service at {{ "%.0f"|format(vehicle.current_mileage) }} km</button>
+      </form>
+    </div>
+  </section>
+
+  <details class="panel panel--collapsed">
+    <summary class="section-label">+ Add another vehicle</summary>
+    <form method="post" action="{{ url_for('setup') }}" class="form form--grid">
+      <label class="field">
+        <span>Name / model</span>
+        <input type="text" name="name" required>
+      </label>
+      <label class="field">
+        <span>Current odometer (km)</span>
+        <input type="number" step="0.1" name="mileage" required>
+      </label>
+      <label class="field">
+        <span>Driving condition</span>
+        <select name="condition">
+          {% for c in conditions %}
+          <option value="{{ c }}">{{ c }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button type="submit" class="btn">Add vehicle</button>
+    </form>
+  </details>
+
+{% endif %}
+
+<script>
+function toggleCustom() {
+  const select = document.getElementById('service_select');
+  const fields = document.getElementById('custom-fields');
+  fields.hidden = select.value !== '__custom__';
+}
+</script>
+{% endblock %}

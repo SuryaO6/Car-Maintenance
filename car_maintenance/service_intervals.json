@@ -1,0 +1,22 @@
+{
+  "Oil Change": {
+    "km": 5000,
+    "months": 6
+  },
+  "Tire Rotation": {
+    "km": 10000,
+    "months": 6
+  },
+  "Air Filter": {
+    "km": 15000,
+    "months": 12
+  },
+  "Brake Inspection": {
+    "km": 20000,
+    "months": 12
+  },
+  "Coolant Check": {
+    "km": 40000,
+    "months": 24
+  }
+}

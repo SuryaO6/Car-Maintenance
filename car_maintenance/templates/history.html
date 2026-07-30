@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}History{% endblock %}
+{% block content %}
+
+{% if not vehicle %}
+  <section class="panel">
+    <p class="panel__hint">No active vehicle yet. <a href="{{ url_for('dashboard') }}">Set one up on the dashboard</a>.</p>
+  </section>
+{% else %}
+  <section class="panel">
+    <div class="ledger-head">
+      <h1 class="panel__title">Service ledger — {{ vehicle.name }}</h1>
+      <a href="{{ url_for('export') }}" class="btn btn--small">Export CSV</a>
+    </div>
+
+    {% if not entries %}
+      <p class="panel__hint">No service history recorded yet. Log one from the dashboard.</p>
+    {% else %}
+    <table class="ledger">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Mileage</th>
+          <th>Service</th>
+          <th>Cost</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in entries %}
+        <tr>
+          <td class="mono">{{ e.date }}</td>
+          <td class="mono">{{ "%.0f"|format(e.mileage) }} km</td>
+          <td>{{ e.service }}</td>
+          <td class="mono">{{ "₹%.2f"|format(e.cost) if e.cost else "—" }}</td>
+          <td class="dim">{{ e.notes or "—" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% endblock %}

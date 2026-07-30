@@ -1,0 +1,22 @@
+{
+  "car_name": "BMW",
+  "current_mileage": 15000.0,
+  "driving_condition": "Normal",
+  "service_log": [
+    {
+      "service": "Oil Chnage",
+      "mileage": 15000.0,
+      "date": "2026-07-27"
+    },
+    {
+      "service": "Oil Chnage",
+      "mileage": 15000.0,
+      "date": "2026-07-27"
+    },
+    {
+      "service": "Oil Change",
+      "mileage": 15000.0,
+      "date": "2026-07-27"
+    }
+  ]
+}

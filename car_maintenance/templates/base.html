@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Garage{% endblock %} · Maintenance Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="board">
+
+  <header class="board__header">
+    <div class="plate">
+      <span class="plate__label">GARAGE LOG</span>
+      <span class="plate__divider">•</span>
+      <span class="plate__sub">rule-based maintenance board</span>
+    </div>
+    <nav class="board__nav">
+      <a href="{{ url_for('dashboard') }}" class="{{ 'is-active' if request.path == '/' }}">Dashboard</a>
+      <a href="{{ url_for('history') }}" class="{{ 'is-active' if request.path == '/history' }}">History</a>
+      {% if garage and garage.active_vehicle() %}
+      <a href="{{ url_for('export') }}">Export CSV</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-stack">
+        {% for category, message in messages %}
+          <div class="flash flash--{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main class="board__main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="board__footer">
+    predictions are rule-based estimates, not a substitute for a real inspection
+  </footer>
+</div>
+</body>
+</html>
